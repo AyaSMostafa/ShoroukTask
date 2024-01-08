@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ShoroukTask.Models.InvoiceDetail>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Invoices</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Item Name
+            </th>
+            <th>
+                Item Count
+            </th>
+            <th>
+                Item Price
+            </th>
+            <th>
+                Total Price
+            </th>
+            <th>
+                Customer Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemPrice)
+            </td>
+            <td>
+                   
+                    @(item.ItemCount * item.ItemPrice)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceHeader.CustomerName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

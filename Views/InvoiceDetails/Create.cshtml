@@ -1,0 +1,48 @@
+﻿@model ShoroukTask.Models.InvoiceDetail
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create New Invoice</h1>
+
+<h4>InvoiceDetail</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label>Customer Name</label>
+                <select asp-for="InvoiceHeaderId" class="form-control" asp-items="ViewBag.InvoiceHeaderId"></select>
+            </div>
+            <div class="form-group">
+                <label>Item Name</label>
+                <input asp-for="ItemName" class="form-control" />
+                <span asp-validation-for="ItemName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Item Count</label>
+                <input asp-for="ItemCount" class="form-control" />
+                <span asp-validation-for="ItemCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Item Price</label>
+                <input asp-for="ItemPrice" class="form-control" />
+                <span asp-validation-for="ItemPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<tr></tr>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
